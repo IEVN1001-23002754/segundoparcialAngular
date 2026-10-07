@@ -1,9 +1,65 @@
 <br>
 <br>
 <br>
-<form class="max-w-sm mx-auto">
-    <h1>ALUMNOS</h1>
-    <br>
-  <label for="message" class="block mb-2.5 text-sm font-medium text-heading">Your message</label>
-  <textarea id="message" rows="4" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write your thoughts here..."></textarea>
-</form>
+
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+  <h1 class="text-3x1 font-bold text-gray-900 mb-6">LISTA ALUMNOS</h1>
+
+  <form [formGroup]="formulario">
+      <div class="mb-5">
+            <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">
+                Matricula
+            </label>
+            <input type="text" id="name" name="name" required
+                  class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="Matricula"
+                  formControlName="matricula">
+
+            <br>
+            <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">
+                Nombre
+            </label>
+            <input type="text" id="name" name="name" required
+                  class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="Nombre"
+                  formControlName="nombre">
+
+            <br>
+            <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">
+                Correo
+            </label>
+            <input type="text" id="name" name="name" required
+                   class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   placeholder="Correo"
+                   formControlName="correo">
+
+            <br>
+            <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">
+                Materia
+            </label>
+            <input type="text" id="name" name="name" required
+                   class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                   placeholder="Materia"
+                   formControlName="materia">
+      </div>
+
+      <div class="flex justify-center mt-5">
+          <button type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800
+                        focus:ring-4 focus:outline-none focus:ring-blue-300
+                        font-medium rounded-lg text-sm px-5 py-2.5
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        hover:scale-110 transition-transform"
+                  (click)="muestraAlumnos()">Registrar
+          </button>
+      </div>
+  </form>
+
+  <div class="max-w-2xl mx-auto mt-8">
+    <h1>Matricula: {{ alumno.matricula }}</h1>  
+    <h1>Nombre: {{ alumno.nombre }}</h1>  
+    <h1>Correo: {{ alumno.correo }}</h1>  
+    <h1>Materia: {{ alumno.materia }}</h1>  
+  </div>
+
+</div>
