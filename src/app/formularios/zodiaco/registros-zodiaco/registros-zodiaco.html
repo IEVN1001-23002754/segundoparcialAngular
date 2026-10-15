@@ -1,0 +1,115 @@
+<br>
+<br>
+<br>
+
+<div class="max-w-6xl mx-auto p-6 bg-red-50 rounded-xl shadow-lg border border-gray-100">
+    <h1 class="text-3xl font-extrabold text-red-700 mb-6 tracking-tight">GESTIÓN DE REGISTROS ZODIACO</h1>
+
+    <form [formGroup]="formulario" (ngSubmit)="guardarEdicion()" class="mb-10 p-6 rounded-xl bg-white border border-red-700">
+        <h2 class="text-xl font-bold text-red-700 mb-4">Editar Registro</h2>
+        <div class="space-y-5">
+            <div>
+                <label for="nombreCompleto" class="block mb-2 text-sm font-medium text-red-700">Nombre completo</label>
+                <input type="text" id="nombreCompleto" formControlName="nombreCompleto" required
+                    class="bg-red-50 border border-red-700 text-gray-700 text-sm rounded-lg block w-full p-3 focus:ring-5 focus:ring-red-200 focus:outline-none transition-all"
+                    placeholder="Nombre(s) Apellido Paterno Apellido Materno">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                    <label for="sexo" class="block mb-2 text-sm font-medium text-red-700">Sexo</label>
+                    <select id="sexo" formControlName="sexo"
+                        class="bg-red-50 border border-red-700 text-gray-700 text-sm rounded-lg block w-full p-3 focus:ring-5 focus:ring-red-200 focus:outline-none transition-all">
+                        <option value="">Seleccionar</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="edad" class="block mb-2 text-sm font-medium text-red-700">Edad</label>
+                    <input type="number" id="edad" formControlName="edad" placeholder="Ej. 20"
+                        class="bg-red-50 border border-red-700 text-gray-700 text-sm rounded-lg block w-full p-3 focus:ring-5 focus:ring-red-200 focus:outline-none transition-all">
+                </div>
+                <div>
+                    <label for="signo" class="block mb-2 text-sm font-medium text-red-700">Signo Chino</label>
+                    <select id="signo" formControlName="signo"
+                        class="bg-red-50 border border-red-700 text-gray-700 text-sm rounded-lg block w-full p-3 focus:ring-5 focus:ring-red-200 focus:outline-none transition-all">
+                        <option value="">Seleccione signo...</option>
+                        <option value="Rata">Rata</option>
+                        <option value="Buey">Buey</option>
+                        <option value="Tigre">Tigre</option>
+                        <option value="Conejo">Conejo</option>
+                        <option value="Dragón">Dragón</option>
+                        <option value="Serpiente">Serpiente</option>
+                        <option value="Caballo">Caballo</option>
+                        <option value="Cabra">Cabra</option>
+                        <option value="Mono">Mono</option>
+                        <option value="Gallo">Gallo</option>
+                        <option value="Perro">Perro</option>
+                        <option value="Cerdo">Cerdo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="flex justify-center gap-4">
+            <button type="submit"
+                    class="text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-3 w-auto transition-all hover:scale-105">
+                    Actualizar Cambios
+            </button>
+            <a routerLink="/formularios/zodiaco"
+               class="text-white bg-purple-800 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-6 py-3 w-auto transition-all hover:scale-105 inline-block text-center cursor-pointer">
+                Regresar al formulario
+            </a>
+        </div>
+    </form>
+
+    <div class="mt-8">
+        <h2 class="mb-4 text-2xl font-bold text-red-700">LISTA DE REGISTROS</h2>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-red-200">
+            <table class="w-full text-sm text-left text-gray-700">
+                <thead class="text-xs text-red-800 uppercase bg-red-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Nombre</th>
+                        <th scope="col" class="px-6 py-3">Edad</th>
+                        <th scope="col" class="px-6 py-3">Sexo</th>
+                        <th scope="col" class="px-6 py-3">Signo</th>
+                        <th scope="col" class="px-6 py-3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reg of registros; let i = index" class="bg-white border-b border-red-100">
+                        <td class="px-6 py-4"> {{ reg.nombre }} {{ reg.aPaterno }} {{ reg.aMaterno }} </td>
+                        <td class="px-6 py-4"> {{ reg.edad }} </td>
+                        <td class="px-6 py-4"> {{ reg.sexo }} </td>
+                        <td class="px-6 py-4"> {{ reg.signo }} </td>
+                        <td class="px-6 py-4">
+                            <div class="flex gap-2">
+                                <button type="button"
+                                        class="px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-lg hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-amber-300 hover:scale-105 transition-all"
+                                        (click)="editarRegistro(i)">
+                                        Editar
+                                </button>
+                                <button type="button"
+                                        class="px-4 py-2 text-sm font-medium text-white bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-red-300 hover:scale-105 transition-all"
+                                        (click)="eliminarRegistro(i)">
+                                        Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div *ngIf="registros.length === 0"
+             class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200"
+             role="alert">
+             <span class="font-medium">Información:</span>
+             No hay registros.
+        </div>
+    </div>
+</div>
+<br>
